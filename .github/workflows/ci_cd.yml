@@ -30,9 +30,6 @@ jobs:
         chmod +x /usr/local/bin/docker-compose
         docker-compose --version  # Verify installation
 
-    - name: Install expect (for unbuffer)
-      run: sudo apt-get install -y expect
-
     # 4. Build the Docker image
     - name: Build the Docker image
       run: |
@@ -47,9 +44,6 @@ jobs:
         # Wait 
         sleep 30
         
-        # Stop all services
-        docker-compose down
-
     # 6. Clean up (remove containers and images after test)
     - name: Clean up
       run: |
