@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🚀 Running E2E test for Mosquitto..."
+printf "🚀 Running E2E test for Mosquitto...\n"
 
 # Start subscriber in background
 mosquitto_sub -h mosquitto -p 1883 -t test/e2e -C 1 > /tmp/received.txt &
@@ -19,9 +19,9 @@ wait $SUB_PID
 RECEIVED=$(cat /tmp/received.txt)
 
 if [ "$RECEIVED" == "$TEST_MSG" ]; then
-  echo "✅ Mosquitto E2E test passed: Message received correctly"
+  printf "✅ Mosquitto E2E test passed: Message received correctly\n"
   exit 0
 else
-  echo "❌ Mosquitto E2E test failed: Expected '$TEST_MSG', but got '$RECEIVED'"
+  printf "❌ Mosquitto E2E test failed: Expected '{TEST_MSG}', but got '{RECEIVED}'\n"
   exit 1
 fi
